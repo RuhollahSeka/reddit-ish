@@ -30,3 +30,9 @@ class Channel(TimeModel):
         related_name='author_channels',
         verbose_name='مولفان کانال'
     )
+
+    followers = models.ManyToManyField(
+        to=User,
+        related_name='following_channels',
+        verbose_name='دنبال‌کنندگان'
+    )
