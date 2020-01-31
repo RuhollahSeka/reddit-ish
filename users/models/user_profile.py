@@ -21,7 +21,7 @@ class UserProfile(TimeModel):
     )
 
     location = models.CharField(
-        max_length=128,
+        max_length=32,
         blank=True,
         verbose_name='مکان'
     )
