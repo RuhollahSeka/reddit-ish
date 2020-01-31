@@ -1,7 +1,10 @@
 import os
 import uuid
 
+from django.utils.deconstruct import deconstructible
 
+
+@deconstructible
 class RenameOnUpload:
     def __init__(self, directory):
         self.directory = directory
