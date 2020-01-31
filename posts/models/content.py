@@ -3,7 +3,7 @@ from django.db import models
 from _helpers.db.models import TimeModel
 
 
-class Content(TimeModel):
+class ContentModel(TimeModel):
     text = models.TextField(
         verbose_name='متن'
     )
