@@ -92,3 +92,10 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_RATES': {
+        'burst': '10/min',
+        'sustained': '100/hour',
+    }
+}
