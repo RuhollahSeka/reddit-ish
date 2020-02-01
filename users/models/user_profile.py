@@ -1,3 +1,5 @@
+import uuid
+
 from decouple import config
 from django.contrib.auth.models import User
 from django.db import models
@@ -27,5 +29,7 @@ class UserProfile(TimeModel):
     )
 
     reset_password_uuid = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
         verbose_name='کد مربوط به لینک فراموشی رمز'
     )
