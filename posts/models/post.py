@@ -1,4 +1,5 @@
 from decouple import config
+from django.contrib.auth.models import User
 from django.db import models
 
 from _helpers.db.utils import RenameOnUpload
@@ -23,4 +24,16 @@ class Post(ContentModel):
         on_delete=models.PROTECT,
         related_name='posts',
         verbose_name='کانال'
+    )
+
+    up_voted_users = models.ManyToManyField(
+        to=User,
+        related_name='up_voted_posts',
+        verbose_name='کاربرانی که رای مثبت ثبت کردند'
+    )
+
+    down_voted_users = models.ManyToManyField(
+        to=User,
+        related_name='down_voted_posts',
+        verbose_name='کاربرانی که رای منفی ثبت کردند'
     )
