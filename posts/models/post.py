@@ -7,6 +7,13 @@ from posts.models import ContentModel, Channel
 
 
 class Post(ContentModel):
+    author = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='posts',
+        verbose_name='مولف',
+    )
+
     title = models.CharField(
         max_length=32,
         verbose_name='عنوان پست'

@@ -6,6 +6,13 @@ from posts.models import ContentModel, Post
 
 
 class Comment(ContentModel):
+    author = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='comments',
+        verbose_name='مولف',
+    )
+
     parent_comment = models.ForeignKey(
         to='self',
         on_delete=models.DO_NOTHING,
