@@ -18,6 +18,11 @@ class ContentModel(TimeModel):
         verbose_name='تعداد بازخوردهای منفی'
     )
 
+    archived = models.BooleanField(
+        default=False,
+        verbose_name='آرشیو شده'
+    )
+
     @property
     def score(self):
         return self.up_votes - self.down_votes
