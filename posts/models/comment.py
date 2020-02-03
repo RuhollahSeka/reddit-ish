@@ -46,4 +46,6 @@ class Comment(ContentModel):
     def save(self, *args, **kwargs):
         if self.parent_comment is None and self.parent_post is None:
             raise ValidationError('Comments should have a parent content.')
+        if self.parent_comment and self.parent_post:
+            raise ValidationError('Comments should have only one parent content.')
         super().save(*args, **kwargs)
