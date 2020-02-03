@@ -1,3 +1,4 @@
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -7,7 +8,7 @@ from posts.serializers import PostRetrieveSerializer, PostListCreateSerializer
 
 
 class PostViewSet(ModelViewSet):
-    authentication_classes = (JWTAuthentication,)
+    authentication_classes = (JWTAuthentication, TokenAuthentication)
     permission_classes = (IsAuthenticated,)
 
     def get_serializer_class(self):
