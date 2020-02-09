@@ -10,7 +10,4 @@ class CommentListCreateAPIView(ListCreateAPIView):
     authentication_classes = (JWTAuthentication,)
     permission_classes = (IsAuthenticated,)
     serializer_class = CommentSerializer
-
-    def get_queryset(self):
-        parent_post_id = self.kwargs['parent_post_id']
-        return Comment.objects.filter(parent_post=parent_post_id)
+    lookup_field = 'parent_post_id'
