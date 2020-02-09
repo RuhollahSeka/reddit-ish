@@ -1,8 +1,11 @@
 from .comment import CommentListCreateAPIView
-from .channel import ChannelListCreateAPIView
-from .post_views.post import PostViewSet
+from .channel_views.channel_list_create import ChannelListCreateAPIView
+from .post_views.post_list_retrieve import PostViewSet
 from .post_views.following_posts import FollowingPostsListAPIView
 from .post_views.contributed_posts import ContributedPostsListAPIView
 from .post_views.created_posts import CreatedPostsListAPIView
 from .post_views.post_update_destroy import PostUpdateDestroyAPIView
 from .post_views.post_create import PostCreateAPIView
+from .action_views.author_invite import AuthorInviteRemoveAPIView
+from .action_views.content_vote import PostVoteAPIView, CommentVoteAPIView
+from .action_views.channel_follow import ChannelFollowAPIView
