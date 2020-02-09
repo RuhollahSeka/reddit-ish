@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
+from posts.models import Channel
 from users.models import UserProfile
 
 
@@ -15,4 +16,5 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         new_user = super().create(validated_data)
         UserProfile.objects.create(user=new_user)
+        Channel.objects.create(admin=new_user, title=new_user.username)
         return new_user
