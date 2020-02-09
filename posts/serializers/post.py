@@ -15,7 +15,7 @@ class BasePostSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'author', 'title', 'image', 'channel', 'text', 'score', 'up_voted', 'down_voted'
         )
-        read_only_fields = ('id', 'up_votes', 'down_votes', 'up_voted', 'down_voted')
+        read_only_fields = ('id', 'score', 'up_votes', 'down_votes', 'up_voted', 'down_voted')
 
     def get_up_voted(self, instance: Post):
         user: User = self.context['request'].user

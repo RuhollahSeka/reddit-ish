@@ -1,4 +1,3 @@
 from .comment import CommentSerializer
-from .post import PostListCreateSerializer
-from .post import PostRetrieveSerializer
-from .channel import ChannelSerializer
+from .post import PostListCreateSerializer, PostRetrieveSerializer
+from .channel import ChannelAdminSerializer, ChannelCreateSerializer, ChannelListRetrieveSerializer
