@@ -8,20 +8,22 @@ class ContentModel(TimeModel):
         verbose_name='متن'
     )
 
-    up_votes = models.PositiveIntegerField(
-        default=0,
-        verbose_name='تعداد بازخوردهای مثبت'
-    )
+    up_voted_users = None
 
-    down_votes = models.PositiveIntegerField(
-        default=0,
-        verbose_name='تعداد بازخوردهای منفی'
-    )
+    down_voted_users = None
 
     archived = models.BooleanField(
         default=False,
         verbose_name='آرشیو شده'
     )
+
+    @property
+    def up_votes(self):
+        return self.up_voted_users.count()
+
+    @property
+    def down_votes(self):
+        return self.down_voted_users.count()
 
     @property
     def score(self):
