@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from decouple import config
 import os
 
@@ -6,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('secret')
 DEBUG = config('debug') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -99,4 +101,15 @@ REST_FRAMEWORK = {
         'burst': '10/min',
         'sustained': '100/hour',
     }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mersad.inc@gmail.com'
+EMAIL_HOST_PASSWORD = "mersadinc1!"
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
 }
