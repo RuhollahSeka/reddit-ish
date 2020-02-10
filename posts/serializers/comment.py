@@ -15,7 +15,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = (
-            'id', 'author', 'text', 'score', 'comments', 'up_voted', 'down_voted', 'parent_post', 'parent_comment'
+            'id', 'text', 'score', 'comments', 'up_voted', 'down_voted', 'parent_post', 'parent_comment'
         )
         read_only_fields = ('id', 'score', 'comments', 'up_voted', 'down_voted')
 
@@ -26,3 +26,7 @@ class CommentSerializer(serializers.ModelSerializer):
     def get_down_voted(self, instance: Comment):
         user: User = self.context['request'].user
         return instance.down_voted_users.filter(id=user.id).exists()
+
+    def create(self, validated_data):
+        validated_data['author'] = self.context['request'].user
+        return super().create(validated_data)
