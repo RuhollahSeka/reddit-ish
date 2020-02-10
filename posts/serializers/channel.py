@@ -45,7 +45,7 @@ class ChannelListRetrieveSerializer(BaseChannelSerializer):
 
     def get_is_author(self, instance: Channel):
         user = self.context['request'].user
-        return instance.authors.filter(id=user.id)
+        return instance.authors.filter(id=user.id).exists()
 
     def get_is_admin(self, instance: Channel):
         user = self.context['request'].user
