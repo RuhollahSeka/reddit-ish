@@ -10,4 +10,4 @@ class IsChannelAuthor(BasePermission):
         if not channel_id or not isinstance(channel_id, int):
             return False
         channel = Channel.objects.filter(id=channel_id).first()
-        return channel and (channel.authors.filter(id=user).exists() or channel.admin == user)
+        return channel and (channel.authors.filter(id=user.id).exists() or channel.admin == user)
