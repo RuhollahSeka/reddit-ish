@@ -17,7 +17,7 @@ class PostViewSet(ReadOnlyModelViewSet):
         return PostListCreateSerializer
 
     def get_queryset(self):
-        channel_id = self.kwargs.get('channel_id')
+        channel_id = self.request.query_params.get('channel_id')
         channel_filter = {'channel_id': channel_id} if channel_id else {}
         ordering_type = self.request.query_params.get('ordering')
         ordering_type = ['-' + ordering_type] if ordering_type else []
