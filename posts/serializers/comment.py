@@ -9,13 +9,13 @@ class CommentSerializer(serializers.ModelSerializer):
     comments = RecursiveSerializer(many=True, read_only=True)
     up_voted = serializers.SerializerMethodField()
     down_voted = serializers.SerializerMethodField()
-    parent_post = serializers.IntegerField(write_only=True, required=False)
-    parent_comment = serializers.IntegerField(write_only=True, required=False)
+    parent_post_id = serializers.IntegerField(write_only=True, required=False)
+    parent_comment_id = serializers.IntegerField(write_only=True, required=False)
 
     class Meta:
         model = Comment
         fields = (
-            'id', 'text', 'score', 'comments', 'up_voted', 'down_voted', 'parent_post', 'parent_comment'
+            'id', 'text', 'score', 'comments', 'up_voted', 'down_voted', 'parent_post_id', 'parent_comment_id'
         )
         read_only_fields = ('id', 'score', 'comments', 'up_voted', 'down_voted')
 
