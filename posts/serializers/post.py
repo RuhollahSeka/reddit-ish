@@ -13,7 +13,7 @@ class BasePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            'id', 'author', 'title', 'image', 'channel', 'text', 'score', 'up_voted', 'down_voted'
+            'id', 'title', 'author', 'image', 'channel', 'text', 'score', 'up_voted', 'down_voted'
         )
         read_only_fields = ('id', 'score', 'up_votes', 'down_votes', 'up_voted', 'down_voted')
 
@@ -30,7 +30,12 @@ class PostListCreateSerializer(BasePostSerializer):
     class Meta:
         model = BasePostSerializer.Meta.model
         fields = BasePostSerializer.Meta.fields
-        read_only_fields = BasePostSerializer.Meta.read_only_fields
+        read_only_fields = BasePostSerializer.Meta.read_only_fields + ('author',)
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        validated_data['author'] = user
+        return super().create(validated_data)
 
 
 class PostRetrieveSerializer(BasePostSerializer):
@@ -39,4 +44,3 @@ class PostRetrieveSerializer(BasePostSerializer):
     class Meta:
         model = BasePostSerializer.Meta.model
         fields = BasePostSerializer.Meta.fields + ('comments',)
-        read_only_fields = BasePostSerializer.Meta.read_only_fields + ('comments',)
