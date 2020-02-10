@@ -10,7 +10,7 @@ class CommentSerializer(serializers.ModelSerializer):
     up_voted = serializers.SerializerMethodField()
     down_voted = serializers.SerializerMethodField()
     parent_post_id = serializers.IntegerField(write_only=True, required=False)
-    parent_comment_id = serializers.IntegerField(write_only=True, required=False)
+    parent_comment_id = serializers.IntegerField(required=False)
 
     class Meta:
         model = Comment
