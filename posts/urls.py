@@ -7,6 +7,7 @@ from posts.views import PostViewSet, CommentListCreateAPIView, ContributedPostsL
 
 router = DefaultRouter()
 router.register('posts', PostViewSet, 'posts')
+router.register('channels', ChannelListCreateAPIView, 'channels')
 
 
 urlpatterns = [
@@ -18,7 +19,6 @@ urlpatterns = [
     path('posts/', PostCreateAPIView.as_view()),
     path('posts/<int:pk>/', PostUpdateDestroyAPIView.as_view()),
 
-    path('channels/', ChannelListCreateAPIView.as_view),
     path('channels/<int:pk>/', ChannelUpdateAPIView.as_view()),
 
     path('channels/<int:pk>/invite/', AuthorInviteRemoveAPIView.as_view()),
