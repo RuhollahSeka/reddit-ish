@@ -1,5 +1,6 @@
 from .comment import CommentListCreateAPIView
 from .channel_views.channel_list_create import ChannelListCreateAPIView
+from .channel_views.channel_update import ChannelUpdateAPIView
 from .post_views.post_list_retrieve import PostViewSet
 from .post_views.following_posts import FollowingPostsListAPIView
 from .post_views.contributed_posts import ContributedPostsListAPIView
