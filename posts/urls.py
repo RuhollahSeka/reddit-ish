@@ -12,7 +12,7 @@ router.register('channels', ChannelListCreateAPIView, 'channels')
 
 
 urlpatterns = [
-    path('posts/<int:parent_post_id>/comments/', CommentListCreateAPIView.as_view()),
+    path('posts/comments/', CommentListCreateAPIView.as_view()),
 
     path('contributed-posts/', ContributedPostsListAPIView.as_view()),
     path('created-posts/', CreatedPostsListAPIView.as_view()),

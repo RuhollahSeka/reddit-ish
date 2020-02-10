@@ -11,4 +11,3 @@ class CommentListCreateAPIView(ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-    lookup_field = 'parent_post_id'
