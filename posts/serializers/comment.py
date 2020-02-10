@@ -6,7 +6,7 @@ from posts.models import Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    comments = RecursiveSerializer(many=True)
+    comments = RecursiveSerializer(many=True, read_only=True)
     up_voted = serializers.SerializerMethodField()
     down_voted = serializers.SerializerMethodField()
     parent_post = serializers.IntegerField(write_only=True, required=False)
