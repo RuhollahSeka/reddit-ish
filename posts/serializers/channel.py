@@ -26,14 +26,14 @@ class ChannelCreateSerializer(BaseChannelSerializer):
 
 
 class ChannelListRetrieveSerializer(BaseChannelSerializer):
-    authors = ChannelUserSerializer(read_only=True, many=True)
-    followers_count = serializers.SerializerMethodField(read_only=True)
-    is_follower = serializers.SerializerMethodField(read_only=True)
+    is_author = serializers.SerializerMethodField()
+    is_admin = serializers.SerializerMethodField()
+    followers_count = serializers.SerializerMethodField()
+    is_follower = serializers.SerializerMethodField()
 
     class Meta:
         model = Channel
-        fields = BaseChannelSerializer.Meta.fields + ('admin', 'authors', 'followers_count', 'is_follower')
-        read_only_fields = BaseChannelSerializer.Meta.read_only_fields + ('authors', 'followers_count')
+        fields = BaseChannelSerializer.Meta.fields + ('is_admin', 'is_author', 'followers_count', 'is_follower')
 
     @staticmethod
     def get_followers_count(instance: Channel):
@@ -42,6 +42,14 @@ class ChannelListRetrieveSerializer(BaseChannelSerializer):
     def get_is_follower(self, instance: Channel):
         user_id = self.context['request'].user.id
         return instance.followers.filter(id=user_id).exists()
+
+    def get_is_author(self, instance: Channel):
+        user = self.context['request'].user
+        return instance.authors.filter(id=user.id)
+
+    def get_is_admin(self, instance: Channel):
+        user = self.context['request'].user
+        return instance.admin == user
 
 
 class ChannelAdminSerializer(BaseChannelSerializer):
