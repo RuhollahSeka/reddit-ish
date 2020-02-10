@@ -21,7 +21,7 @@ urlpatterns = [
     path('posts/<int:pk>/', PostUpdateDestroyAPIView.as_view()),
 
     path('channels/<int:pk>/', ChannelUpdateAPIView.as_view()),
-    path('channels/<int:pk>/', ChannelRetrieveAPIView.as_view()),
+    path('channel/<int:pk>/', ChannelRetrieveAPIView.as_view()),
     path('user-channels/', UserChannelsListAPIView.as_view()),
 
     path('channels/<int:pk>/invite/', AuthorInviteRemoveAPIView.as_view()),

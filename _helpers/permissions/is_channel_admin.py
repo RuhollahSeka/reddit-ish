@@ -6,7 +6,7 @@ from posts.models import Channel
 class IsChannelAdmin(BasePermission):
     def has_permission(self, request, view):
         user = request.user
-        channel_id = request.kwargs.get('pk', 0)
+        channel_id = view.kwargs.get('pk', 0)
         if not channel_id or not isinstance(channel_id, int):
             return False
         channel = Channel.objects.filter(id=channel_id).first()
