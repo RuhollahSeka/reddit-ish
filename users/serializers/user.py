@@ -14,7 +14,10 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
     def create(self, validated_data):
+        password = validated_data.pop('password')
         new_user = super().create(validated_data)
+        new_user.set_password(password)
+        new_user.save()
         UserProfile.objects.create(user=new_user)
         Channel.objects.create(admin=new_user, title=new_user.username)
         return new_user
