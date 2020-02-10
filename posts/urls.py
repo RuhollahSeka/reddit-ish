@@ -3,7 +3,8 @@ from rest_framework.routers import DefaultRouter
 
 from posts.views import PostViewSet, CommentListCreateAPIView, ContributedPostsListAPIView, CreatedPostsListAPIView, \
     FollowingPostsListAPIView, PostCreateAPIView, PostUpdateDestroyAPIView, ChannelListCreateAPIView, \
-    AuthorInviteRemoveAPIView, ChannelFollowAPIView, PostVoteAPIView, ChannelUpdateAPIView, CommentVoteAPIView
+    AuthorInviteRemoveAPIView, ChannelFollowAPIView, PostVoteAPIView, ChannelUpdateAPIView, CommentVoteAPIView, \
+    UserChannelsListAPIView, ChannelRetrieveAPIView
 
 router = DefaultRouter()
 router.register('posts', PostViewSet, 'posts')
@@ -20,6 +21,8 @@ urlpatterns = [
     path('posts/<int:pk>/', PostUpdateDestroyAPIView.as_view()),
 
     path('channels/<int:pk>/', ChannelUpdateAPIView.as_view()),
+    path('channels/<int:pk>/', ChannelRetrieveAPIView.as_view()),
+    path('user-channels/', UserChannelsListAPIView.as_view()),
 
     path('channels/<int:pk>/invite/', AuthorInviteRemoveAPIView.as_view()),
     path('follow-channel/', ChannelFollowAPIView.as_view()),
